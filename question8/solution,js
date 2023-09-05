@@ -1,0 +1,28 @@
+function quickSort(array) {
+  // Base case: If the array has 0 or 1 elements, it is already sorted
+  if (array.length <= 1) {
+    return array;
+  }
+
+  // Choose a pivot (in this implementation, we choose the last element)
+  const pivot = array[array.length - 1];
+  const left = [];
+  const right = [];
+
+  // Partition the array into two subarrays: elements less than the pivot and elements greater than the pivot
+  for (let i = 0; i < array.length - 1; i++) {
+    if (array[i] < pivot) {
+      left.push(array[i]);
+    } else {
+      right.push(array[i]);
+    }
+  }
+
+  // Recursively sort both subarrays and combine them with the pivot
+  return [...quickSort(left), pivot, ...quickSort(right)];
+}
+
+// Example usage:
+const unsortedArray = [64, 25, 12, 22, 11];
+const sortedArray = quickSort(unsortedArray);
+console.log(sortedArray); // Output: [11, 12, 22, 25, 64]
